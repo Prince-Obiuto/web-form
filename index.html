@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <form action="submitForm.java" method="POST">
+            <div>
+                <h2>Bio-Data</h2>
+                <hr>
+            </div>
+            <br>
+            <label for="first name">First Name</label>
+            <input type="text" id="first name" name="name" required autocomplete="given-name">
+
+            <label for="middle name">Middle Name</label>
+            <input type="text" id="middle name" name="name" autocomplete="additional-name">
+
+            <label for="last name">Last Name</label>
+            <input type="text" id="last name" name="name" required autocomplete="family-name">
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+
+            <label for="date">Date Of Birth</label>
+            <input type="date" id="date" name="date" required autocomplete="day">
+
+            
+                
+                <label for="reg number">Registration Number</label>
+                <input type="number" id="reg number" name="reg number" required autocomplete="number">
+
+            <fieldset>
+                <legend>School/Faculty</legend>
+                    
+                <label>
+                    <input type="radio" name="type" value="SEET">
+                    SEET
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SAAT">
+                    SAAT
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SOPS">
+                    SOPS
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SOBS">
+                    SOBS
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SICT">
+                    SICT
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SLIT">
+                    SLIT
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SOES">
+                    SOES
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SESET">
+                    SESET
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SOHT">
+                    SOHT
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="SBMS">
+                    SBMS/College of Medicine
+                </label>
+
+                <label>
+                    <input type="radio" name="type" value="CEsPESS">
+                    CEsPESS
+                </label>
+
+                <label>
+                    <input type="radio" name="type">
+                    School of Post-Graduate Studies
+                </label>
+            </fieldset>    
+
+            <label for="department">Department</label>
+            <input type="text" id="department" name="department" required>
+            
+            <label for="nationality">Nationality</label>
+            <select id="nationality" name="nationality" required>
+                <option value="nigerian">Nigerian</option>
+                <option value="non-nigerian">Non-Nigerian</option>
+            </select>
+
+            <label for="country">If Non-Nigerian, Nationality</label>
+            <input type="text" id="country" name="country" autocomplete="country">
+
+            <label for="state">If Nigerian, State of Origin</label>
+            <select id="state" name="state" required>
+                <option value="none" selected>None</option>
+                <option value="abia">Abia State</option>
+                <option value="adamawa">Adamawa State</option>
+                <option value="akwa-ibom">Akwa-Ibom State</option>
+                <option value="anambra">Anambra State</option>
+                <option value="bauchi">Bauchi State</option>
+                <option value="bayelsa">Bayelsa State</option>
+                <option value="benue">Benue State</option>
+                <option value="borno">Borno State</option>
+                <option value="cross-river">Cross-River State</option>
+                <option value="delta">Delta State</option>
+                <option value="ebonyi">Ebonyi State</option>
+                <option value="edo">Edo State</option>
+                <option value="ekiti">Ekiti State</option>
+                <option value="enugu">Enugu State</option>
+                <option value="gombe">Gombe State</option>
+                <option value="imo">Imo State</option>
+                <option value="jigawa">Jigawa State</option>
+                <option value="kaduna">Kaduna State</option>
+                <option value="kano">Kano State</option>
+                <option value="katsina">Katsina State</option>
+                <option value="kebbi">Kebbi State</option>
+                <option value="Kogi">Kogi State</option>
+                <option value="Kwara">Kwara State</option>
+                <option value="lagos">Lagos State</option>
+                <option value="nasarawa">Nasarawa State</option>
+                <option value="niger">Niger State</option>
+                <option value="ogun">Ogun State</option>
+                <option value="ondo">Ondo State</option>
+                <option value="osun">Osun State</option>
+                <option value="oyo">Oyo State</option>
+                <option value="plateau">Plateau State</option>
+                <option value="rivers">Rivers State</option>
+                <option value="sokoto">Sokoto State</option>
+                <option value="Taraba">Taraba State</option>
+                <option value="yobe">Yobe State</option>
+                <option value="zamfara">Zamfara State</option>
+                <option value="FCT">FCT</option>
+            </select>
+
+            <label for="agreement">
+                <input type="checkbox" id="agreement" name="agreement" required>
+                I legally agree to providing my details herein for research purposes only
+            </label>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

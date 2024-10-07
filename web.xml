@@ -1,0 +1,9 @@
+<servlet>
+    <servlet-name>WebformServlet</servlet-name>
+    <servlet-class>com.princeobiuto.form.WebformServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>WebformServlet</servlet-name>
+    <url-pattern>/submitForm</url-pattern>
+</servlet-mapping>

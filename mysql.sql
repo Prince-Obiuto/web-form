@@ -1,8 +1,8 @@
-CREATE DATABASE jdbc;
+CREATE DATABASE IF NOT EXISTS jdbc;
 
 USE jdbc;
 
-CREATE TABLE attendees (
+CREATE TABLE IF NOT EXISTS attendees (
     id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50),
     middle_name VARCHAR(50),

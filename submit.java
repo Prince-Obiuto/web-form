@@ -15,9 +15,11 @@ public class submit {
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverMana
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/jdbc\", \"root\", \"princeobiuto");
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
         }
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+        return connection;
     }
 
     // Method to insert a new attendee

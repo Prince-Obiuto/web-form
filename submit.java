@@ -1,63 +1,54 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class submit {
-
-    // JDBC URL, username, and password of MySQL server
-    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306";
-    private static final String JDBC_USER = "root"; // MySQL username
-    private static final String JDBC_PASSWORD = "princeobiuto"; // MySQL password
 
     // Method to establish a connection to the database
     private static Connection connect() {
         Connection connection = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/jdbc", "root", "princeobiuto");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return connection;
     }
 
-    // Method to execute SQL from a file
-    public static void executeSqlFile(String filePath) {
-        try (Connection conn = connect();
-             Statement stmt = conn.createStatement();
-             BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+    // Method to insert a new attendee
+    public static void insertAttendee(String firstName, String middleName, String lastName, String email, String dob,
+                                      String regNumber, String faculty, String department, String nationality,
+                                      String country, String stateOfOrigin) {
+        String sql = "INSERT INTO attendees (first_name, middle_name, last_name, email, dob, reg_number, faculty, department, nationality, country, state_of_origin) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            String sql;
-            StringBuilder queryBuilder = new StringBuilder();
-            while ((sql = br.readLine()) != null) {
-                queryBuilder.append(sql).append("\n");
+        try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            if (conn != null) {
+                stmt.setString(1, firstName);
+                stmt.setString(2, middleName);
+                stmt.setString(3, lastName);
+                stmt.setString(4, email);
+                stmt.setString(5, dob);  // dob should be in YYYY-MM-DD format
+                stmt.setString(6, regNumber);
+                stmt.setString(7, faculty);
+                stmt.setString(8, department);
+                stmt.setString(9, nationality);
+                stmt.setString(10, country);
+                stmt.setString(11, stateOfOrigin);
+
+                stmt.executeUpdate();
+                System.out.println("Attendee inserted successfully.");
+            } else {
+                System.out.println("Failed to make connection to database.");
             }
-
-            // Split the queries by semicolon (assuming each query ends with ';')
-            String[] queries = queryBuilder.toString().split(";");
-
-            // Execute each query
-            for (String query : queries) {
-                if (!query.trim().isEmpty()) {
-                    stmt.execute(query.trim());
-                    System.out.println("Executed: " + query);
-                }
-            }
-
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        // Path to the SQL file
-        String sqlFilePath = "mysql.sql";
-
-        // Execute the SQL file
-        executeSqlFile(sqlFilePath);
+        // Test data for inserting an attendee
+        insertAttendee("John", "Michael", "Doe", "johndoe@gmail.com", "2001-05-10", "123456", "Science", "Computer Science", "Nigerian", "Nigeria", "Lagos");
     }
 }

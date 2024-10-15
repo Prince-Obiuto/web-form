@@ -1,13 +1,12 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-import java.io.IOException;
-import org.nanohttpd.protocols.http.IHTTPSession;
-import org.nanohttpd.protocols.http.NanoHTTPD;
-import org.nanohttpd.protocols.http.response.Response;
-import org.nanohttpd.protocols.http.response.Status;
+
+import fi.iki.elonen.NanoHTTPD;
+import fi.iki.elonen.NanoHTTPD.Response.Status;
 
 public class submit extends NanoHTTPD {
 	
@@ -74,9 +73,9 @@ public class submit extends NanoHTTPD {
             // Insert into the database
             insertAttendee(firstName, middleName, lastName, email, dob, regNumber, faculty, department, nationality, country, stateOfOrigin);
 
-            return Response.newFixedLengthResponse(Status.OK, "text/plain", "Attendee data submitted successfully.");
+            return NanoHTTPD.newFixedLengthResponse(Status.OK, "text/plain", "Attendee data submitted successfully.");
     	}
-    	return Response.newFixedLengthResponse(Status.NOT_FOUND, "text/plain", "Not Found");
+    	return NanoHTTPD.newFixedLengthResponse(Status.NOT_FOUND, "text/plain", "Not Found");
     }
 
     public static void main(String[] args) {

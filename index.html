@@ -3,36 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Registration Form</title>
+    <title>Information Collection Form</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="form-container">
-        <form action="/submit" method="GET">
+        <form action="http://localhost:8080/submit" method="GET">
             <div>
                 <h2>Bio-Data</h2>
                 <hr>
             </div>
             <br>
-            <label for="first name">First Name</label>
-            <input type="text" id="first name" name="name" required autocomplete="given-name">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" required autocomplete="given-name">
 
-            <label for="middle name">Middle Name</label>
-            <input type="text" id="middle name" name="name" autocomplete="additional-name">
+            <label for="middle_name">Middle Name</label>
+            <input type="text" id="middle_name" name="middle_name" autocomplete="additional-name">
 
-            <label for="last name">Last Name</label>
-            <input type="text" id="last name" name="name" required autocomplete="family-name">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required autocomplete="family-name">
             
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" required autocomplete="email">
 
-            <label for="date">Date Of Birth</label>
-            <input type="date" id="date" name="date" required autocomplete="day">
+            <label for="dob">Date Of Birth</label>
+            <input type="date" id="dob" name="dob" required autocomplete="day">
 
-            
-                
-                <label for="reg number">Registration Number</label>
-                <input type="number" id="reg number" name="reg number" required autocomplete="number">
+            <label for="reg number">Registration Number</label>
+            <input type="number" id="reg number" name="reg number" required autocomplete="number">
 
             <fieldset>
                 <legend>School/Faculty</legend>
@@ -110,8 +108,8 @@
             <label for="country">If Non-Nigerian, Nationality</label>
             <input type="text" id="country" name="country" autocomplete="country">
 
-            <label for="state">If Nigerian, State of Origin</label>
-            <select id="state" name="state" required>
+            <label for="state_of_origin">If Nigerian, State of Origin</label>
+            <select id="state_of_origin" name="state_of_origin" required>
                 <option value="none" selected>None</option>
                 <option value="abia">Abia State</option>
                 <option value="adamawa">Adamawa State</option>

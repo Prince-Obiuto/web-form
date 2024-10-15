@@ -2,8 +2,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+import java.io.IOException;
+import org.nanohttpd.protocols.http.IHTTPSession;
+import org.nanohttpd.protocols.http.NanoHTTPD;
+import org.nanohttpd.protocols.http.response.Response;
+import org.nanohttpd.protocols.http.response.Status;
 
-public class submit {
+public class submit extends NanoHTTPD {
+	
+	public submit() throws IOException {
+		super(8080);
+		start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
+		System.out.println("Server started on http://localhost:8080/");
+	}
 
     // Method to establish a connection to the database
     private static Connection connect() {
@@ -17,11 +29,8 @@ public class submit {
     }
 
     // Method to insert a new attendee
-    public static void insertAttendee(String firstName, String middleName, String lastName, String email, String dob,
-                                      String regNumber, String faculty, String department, String nationality,
-                                      String country, String stateOfOrigin) {
-        String sql = "INSERT INTO attendees (first_name, middle_name, last_name, email, dob, reg_number, faculty, department, nationality, country, state_of_origin) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public static void insertAttendee(String firstName, String middleName, String lastName, String email, String dob, String regNumber, String faculty, String department, String nationality, String country, String stateOfOrigin) {
+        String sql = "INSERT INTO attendees (first_name, middle_name, last_name, email, dob, reg_number, faculty, department, nationality, country, state_of_origin) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             if (conn != null) {
@@ -29,7 +38,7 @@ public class submit {
                 stmt.setString(2, middleName);
                 stmt.setString(3, lastName);
                 stmt.setString(4, email);
-                stmt.setString(5, dob);  // dob should be in YYYY-MM-DD format
+                stmt.setString(5, dob);
                 stmt.setString(6, regNumber);
                 stmt.setString(7, faculty);
                 stmt.setString(8, department);
@@ -38,17 +47,43 @@ public class submit {
                 stmt.setString(11, stateOfOrigin);
 
                 stmt.executeUpdate();
-                System.out.println("Attendee inserted successfully.");
-            } else {
+                System.out.println("Attendee submitted successfully.");
+            } /*else {
                 System.out.println("Failed to make connection to database.");
-            }
+            }*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
+    @Override
+    public Response serve(IHTTPSession session) {
+    	if (session.getUri().equals("/submit")) {
+    		String firstName = session.getParameters().getOrDefault("first_name", List.of("")).get(0);
+            String middleName = session.getParameters().getOrDefault("middle_name", List.of("")).get(0);
+            String lastName = session.getParameters().getOrDefault("last_name", List.of("")).get(0);
+            String email = session.getParameters().getOrDefault("email", List.of("")).get(0);
+            String dob = session.getParameters().getOrDefault("dob", List.of("")).get(0);
+            String regNumber = session.getParameters().getOrDefault("reg_number", List.of("")).get(0);
+            String faculty = session.getParameters().getOrDefault("faculty", List.of("")).get(0);
+            String department = session.getParameters().getOrDefault("department", List.of("")).get(0);
+            String nationality = session.getParameters().getOrDefault("nationality", List.of("")).get(0);
+            String country = session.getParameters().getOrDefault("country", List.of("")).get(0);
+            String stateOfOrigin = session.getParameters().getOrDefault("state_of_origin", List.of("")).get(0);
+            
+            // Insert into the database
+            insertAttendee(firstName, middleName, lastName, email, dob, regNumber, faculty, department, nationality, country, stateOfOrigin);
+
+            return Response.newFixedLengthResponse(Status.OK, "text/plain", "Attendee data submitted successfully.");
+    	}
+    	return Response.newFixedLengthResponse(Status.NOT_FOUND, "text/plain", "Not Found");
+    }
 
     public static void main(String[] args) {
-        // Test data for inserting an attendee
-        insertAttendee("John", "Michael", "Doe", "johndoe@gmail.com", "2001-05-10", "123456", "Science", "Computer Science", "Nigerian", "Nigeria", "Lagos");
+    	 try {
+             new submit();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
     }
 }

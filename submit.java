@@ -46,7 +46,7 @@ public class submit extends NanoHTTPD {
                 stmt.setString(11, stateOfOrigin);
 
                 stmt.executeUpdate();
-                System.out.println("Attendee submitted successfully.");
+                //System.out.println("Attendee submitted successfully.");
             } /*else {
                 System.out.println("Failed to make connection to database.");
             }*/
@@ -73,7 +73,11 @@ public class submit extends NanoHTTPD {
             // Insert into the database
             insertAttendee(firstName, middleName, lastName, email, dob, regNumber, faculty, department, nationality, country, stateOfOrigin);
 
-            return NanoHTTPD.newFixedLengthResponse(Status.OK, "text/plain", "Attendee data submitted successfully.");
+            String confirmationPage = String.format("/confirmation.html?first_name=%s&last_name=%s", firstName, lastName);
+            Response response = NanoHTTPD.newFixedLengthResponse(Response.Status.REDIRECT, "text/html", "");
+            response.addHeader("Location", confirmationPage);  // Set the 'Location' header for redirection
+
+            return response;
     	}
     	return NanoHTTPD.newFixedLengthResponse(Status.NOT_FOUND, "text/plain", "Not Found");
     }

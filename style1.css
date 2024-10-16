@@ -1,10 +1,22 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing:content-box ;
 }
 
 body {
     font-family: sans-serif;
-    background: linear-gradient(rgba(11, 44, 189, 0.459),rgb(194, 124, 226), white);;
+    background: rgb(130, 39, 172);
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    font-family: Segoue UI;
+}
+
+a {
+    font-style: italic;
 }

@@ -73,7 +73,7 @@ public class submit extends NanoHTTPD {
             // Insert into the database
             insertAttendee(firstName, middleName, lastName, email, dob, regNumber, faculty, department, nationality, country, stateOfOrigin);
 
-            String confirmationPage = String.format("/confirmation.html?first_name=%s&last_name=%s", firstName, lastName);
+            String confirmationPage = String.format("https://web-form-beryl.vercel.app/confirmation.html?first_name=%s&last_name=%s", firstName, lastName);
             Response response = NanoHTTPD.newFixedLengthResponse(Response.Status.REDIRECT, "text/html", "");
             response.addHeader("Location", confirmationPage);  // Set the 'Location' header for redirection
 

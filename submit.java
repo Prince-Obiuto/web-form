@@ -46,6 +46,7 @@ public class submit extends NanoHTTPD {
                 stmt.setString(11, stateOfOrigin);
 
                 stmt.executeUpdate();
+SendEmail.createEmail(email, firstName, lastName);
                 //System.out.println("Attendee submitted successfully.");
             } /*else {
                 System.out.println("Failed to make connection to database.");

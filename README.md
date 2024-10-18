@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a **Java-based web application** for collecting user information through an HTML form. The form captures details like personal information, academic background, and other relevant data, which are then stored in a MySQL database. The backend is implemented using **NanoHTTPD**, a lightweight web server for handling HTTP requests and responses.
+This project is a **Java-based web application** for collecting user information through an HTML form. The form captures details like personal information, academic background, and other relevant data, which are then stored in a MySQL database. The backend is implemented using **NanoHTTPD**, a lightweight web server for handling HTTP requests and responses. Also uses the mail handler from javax to handle mail requests.
 
 The project is hosted on **Vercel** for production deployment, allowing users to submit information remotely. 
 
@@ -10,6 +10,7 @@ The project is hosted on **Vercel** for production deployment, allowing users to
 - User-friendly HTML form for information submission.
 - Backend implemented in **Java** using NanoHTTPD.
 - **MySQL** database integration for storing submitted data.
+- Sends a confirmation email to the user.
 - Redirects users to a confirmation page after successful data submission.
 
 ## Technologies
@@ -17,6 +18,7 @@ The project is hosted on **Vercel** for production deployment, allowing users to
 - **NanoHTTPD** as the lightweight HTTP server.
 - **MySQL** for database storage.
 - **Vercel** for hosting the web application.
+- **Javax mail** for handling the mail server and sending a confirmation email.
 
 ## Getting Started
 

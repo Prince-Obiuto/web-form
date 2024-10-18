@@ -8,9 +8,9 @@ public class SendEmail {
 
 private Properties loadProperties() throws IOException {
         Properties property = new Properties();
-        FileInputStream fis = new FileInputStream("config.properties");
-        props.load(fis);
-        return props;
+        FileInputStream fileInput = new FileInputStream("config.properties");
+        property.load(fileInput);
+        return property;
     }
 
     public static void createEmail(String recipientEmail, String firstName, String lastName) {
@@ -39,7 +39,7 @@ private Properties loadProperties() throws IOException {
             message.setText(String.format("Dear %s %s,\n\nThank you for registering!", firstName, lastName));
 
             Transport.send(message);
-            System.out.println("Email sent successfully to " + recipientEmail);
+            //System.out.println("Email sent successfully to " + recipientEmail);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

@@ -1,2 +1,4 @@
 /submit.class
-config.properties
+/config.properties
+/SendEmail.class
+/bin/

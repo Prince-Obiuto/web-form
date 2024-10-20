@@ -6,18 +6,22 @@ import java.io.IOException;
 
 public class SendEmail {
 
-private Properties loadProperties() throws IOException {
+	private static Properties loadProperties() throws IOException {
         Properties property = new Properties();
         FileInputStream fileInput = new FileInputStream("config.properties");
         property.load(fileInput);
         return property;
-    }
+	}
 
     public static void createEmail(String recipientEmail, String firstName, String lastName) {
-        try {
-            Properties props = loadProperties();
-            final String username = props.getProperty("email.username");
-            final String password = props.getProperty("email.password");
+    	Properties props = null;
+		try {
+			props = loadProperties();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        final String username = props.getProperty("email.username");
+        final String password = props.getProperty("email.password");
 
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");

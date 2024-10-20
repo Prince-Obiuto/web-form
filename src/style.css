@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: linear-gradient(rgba(11, 44, 189, 0.459),rgb(194, 124, 226), white);;
+}
+
+.form-container {
+    width: 400px;
+    margin: 50px auto;
+    background-blend-mode: hue;
+    background-color: rgba(218, 213, 213, 0.842);
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    justify-content: space-evenly;
+    display: flex;
+    font-family: monospace;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 5px;
+    font-family: Segoue UI;
+}
+
+.form-container hr {
+    background-color: rgb(89, 28, 160);
+    border-radius: 10px;
+    height: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 200;
+    font-display: auto;
+    font-family: monospace;
+}
+.form-container fieldset{
+    display: contents;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 7px;
+    margin-bottom: 12px;
+    border: 1px solid #c92dc1;
+    border-radius: 10px;
+    font-style: oblique;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: lightseagreen;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #228f86;
+    font-style: italic;
+}

@@ -43,7 +43,7 @@ public class SendEmail {
             message.setText(String.format("Dear %s %s,\n\nThank you for registering!", firstName, lastName));
 
             Transport.send(message);
-            //System.out.println("Email sent successfully to " + recipientEmail);
+            System.out.println("Email sent successfully to " + recipientEmail);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

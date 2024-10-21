@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -26,9 +27,29 @@ public class submit extends NanoHTTPD {
         }
         return connection;
     }
+    
+    //Method to check if record exists
+    public static boolean isAttendeeExists(String email) {
+        String sql = "SELECT COUNT(*) FROM attendees WHERE email = ?";
+        try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                return true; // Attendee exists
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     // Method to insert a new attendee
     public static void insertAttendee(String firstName, String middleName, String lastName, String email, String dob, String regNumber, String faculty, String department, String nationality, String country, String stateOfOrigin) {
+    	if (isAttendeeExists(email)) {
+            System.out.println("Attendee already exists in the database.");
+            return;
+    	}
+            
         String sql = "INSERT INTO attendees (first_name, middle_name, last_name, email, dob, reg_number, faculty, department, nationality, country, state_of_origin) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -46,8 +67,9 @@ public class submit extends NanoHTTPD {
                 stmt.setString(11, stateOfOrigin);
 
                 stmt.executeUpdate();
-SendEmail.createEmail(email, firstName, lastName);
-                //System.out.println("Attendee submitted successfully.");
+                
+                System.out.println("Attendee submitted successfully.");
+                SendEmail.createEmail(email, firstName, lastName);
             } /*else {
                 System.out.println("Failed to make connection to database.");
             }*/

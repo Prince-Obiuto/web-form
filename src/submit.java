@@ -102,7 +102,7 @@ public class submit extends NanoHTTPD {
 
             return response;
     	}
-    	return NanoHTTPD.newFixedLengthResponse(Status.NOT_FOUND, "text/plain", "Not Found");
+    	return NanoHTTPD.newFixedLengthResponse(Status.NOT_FOUND, "text/plain", "404 Error \nNot Found");
     }
 
     public static void main(String[] args) {

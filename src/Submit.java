@@ -9,9 +9,9 @@ import java.util.List;
 import fi.iki.elonen.NanoHTTPD;
 import fi.iki.elonen.NanoHTTPD.Response.Status;
 
-public class submit extends NanoHTTPD {
+public class Submit extends NanoHTTPD {
 	
-	public submit() throws IOException {
+	public Submit() throws IOException {
 		super(8080);
 		start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
 		System.out.println("Server started on http://localhost:8080/");
@@ -107,7 +107,7 @@ public class submit extends NanoHTTPD {
 
     public static void main(String[] args) {
     	try {
-    		new submit();
+    		new Submit();
     	} catch (IOException e) {
     		e.printStackTrace();
     	}

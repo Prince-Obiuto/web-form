@@ -7,10 +7,10 @@ import java.io.IOException;
 public class SendEmail {
 
 	private static Properties loadProperties() throws IOException {
-        Properties property = new Properties();
+        Properties props = new Properties();
         FileInputStream fileInput = new FileInputStream("config.properties");
-        property.load(fileInput);
-        return property;
+        props.load(fileInput);
+        return props;
 	}
 
     public static void createEmail(String recipientEmail, String firstName, String lastName) {
@@ -25,7 +25,7 @@ public class SendEmail {
 
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp-relay.brevo.com");
+        props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
@@ -39,7 +39,7 @@ public class SendEmail {
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
             message.setSubject("Registration Confirmation");
-            message.setText(String.format("Dear %s %s,\n\nThank you for registering!", firstName, lastName));
+            message.setContent("Dear %s %s,\n\nThank you for registering! Your registration was successful, and we look forward to seeing you at the event.\n\nBest regards,\nEvent Team", "text/html");
 
             Transport.send(message);
             System.out.println("Email sent successfully to " + recipientEmail);

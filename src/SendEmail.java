@@ -39,12 +39,14 @@ public class SendEmail {
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
             message.setSubject("Registration Confirmation");
-            message.setContent("Dear %s %s,\n\nThank you for registering! Your registration was successful, and we look forward to seeing you at the event.\n\nBest regards,\nEvent Team", "text/html");
+            String messageContent = "<h1>Dear Sir/Madam</h1> <p>Thank you for registering! Your registration was successful, and we look forward to seeing you at the event.\n\nBest regards,\nEvent Team</p>";
+            message.setContent(messageContent, "text/html");
 
             Transport.send(message);
             System.out.println("Email sent successfully to " + recipientEmail);
         } catch (MessagingException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

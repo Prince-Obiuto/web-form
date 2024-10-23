@@ -80,7 +80,7 @@ public class Submit extends NanoHTTPD {
     
     @Override
     public Response serve(IHTTPSession session) {
-    	if (session.getUri().equals("/submit")) {
+    	if (session.getUri().equals("/Submit")) {
     		String firstName = session.getParameters().getOrDefault("first_name", List.of("")).get(0);
             String middleName = session.getParameters().getOrDefault("middle_name", List.of("")).get(0);
             String lastName = session.getParameters().getOrDefault("last_name", List.of("")).get(0);

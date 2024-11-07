@@ -14,14 +14,14 @@ public class Submit extends NanoHTTPD {
 	public Submit() throws IOException {
 		super(8080);
 		start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
-		System.out.println("Server started on http://localhost:8080/");
+		System.out.println("Server started on port 8080");
 	}
 
     // Method to establish a connection to the database
     private static Connection connect() {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/jdbc", "root", "princeobiuto");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/obiutoprince_webform", "obiutoprince_obiutoprince", "QSNmL6kwj!jAsjm");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,7 +69,7 @@ public class Submit extends NanoHTTPD {
                 stmt.executeUpdate();
                 
                 System.out.println("Attendee submitted successfully.");
-                SendEmail.createEmail(email, firstName, lastName);
+                //SendEmail.createEmail(email, firstName, lastName);
             } /*else {
                 System.out.println("Failed to make connection to database.");
             }*/

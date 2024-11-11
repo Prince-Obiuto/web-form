@@ -21,7 +21,7 @@ public class Submit extends NanoHTTPD {
     private static Connection connect() {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/obiutoprince_webform", "obiutoprince_obiutoprince", "QSNmL6kwj!jAsjm");
+            connection = DriverManager.getConnection("jdbc:webformdatabase-obiutoprince-30dc.k.aivencloud.com", "avnadmin", "AVNS_cmsU__afKg50f6a5iJa");
         } catch (SQLException e) {
             e.printStackTrace();
         }

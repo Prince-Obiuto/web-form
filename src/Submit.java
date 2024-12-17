@@ -21,7 +21,7 @@ public class Submit extends NanoHTTPD {
     private static Connection connect() {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:webformdatabase-obiutoprince-30dc.k.aivencloud.com", "avnadmin", "AVNS_cmsU__afKg50f6a5iJa");
+            connection = DriverManager.getConnection("");
         } catch (SQLException e) {
             e.printStackTrace();
         }
